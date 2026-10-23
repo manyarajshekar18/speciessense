@@ -51,7 +51,7 @@ The trained objects are stored as `model.joblib`, `scaler.joblib`, and `encoder.
 ## Run Locally (without Docker)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/speciessense.git
+git clone https://github.com/manyarajshekar18/speciessense.git
 cd speciessense
 python -m venv venv
 venv\Scripts\activate        # Windows (use: source venv/bin/activate on Mac/Linux)
