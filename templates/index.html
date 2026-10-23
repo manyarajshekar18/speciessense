@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iris Species Predictor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Iris Species Predictor</h1>
+
+        <p class="subtitle">
+            Enter the flower measurements to predict the species.
+        </p>
+
+        <form id="predictionForm">
+
+            <div class="form-group">
+                <label for="sepal_length">
+                    Sepal Length (cm)
+                </label>
+
+                <input
+                    type="number"
+                    id="sepal_length"
+                    name="sepal_length"
+                    step="0.01"
+                    min="0"
+                    placeholder="e.g. 5.1"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="sepal_width">
+                    Sepal Width (cm)
+                </label>
+
+                <input
+                    type="number"
+                    id="sepal_width"
+                    name="sepal_width"
+                    step="0.01"
+                    min="0"
+                    placeholder="e.g. 3.5"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="petal_length">
+                    Petal Length (cm)
+                </label>
+
+                <input
+                    type="number"
+                    id="petal_length"
+                    name="petal_length"
+                    step="0.01"
+                    min="0"
+                    placeholder="e.g. 1.4"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="petal_width">
+                    Petal Width (cm)
+                </label>
+
+                <input
+                    type="number"
+                    id="petal_width"
+                    name="petal_width"
+                    step="0.01"
+                    min="0"
+                    placeholder="e.g. 0.2"
+                    required
+                >
+            </div>
+
+
+            <button type="submit" id="predictButton">
+                Predict Species
+            </button>
+
+        </form>
+
+
+        <div id="loading" class="loading hidden">
+            Predicting...
+        </div>
+
+
+        <div id="result" class="result hidden">
+
+            <p>Predicted Species</p>
+
+            <h2 id="species"></h2>
+
+        </div>
+
+
+        <div id="error" class="error hidden"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const form = document.getElementById("predictionForm");
+
+const resultDiv = document.getElementById("result");
+const speciesElement = document.getElementById("species");
+
+const errorDiv = document.getElementById("error");
+const loadingDiv = document.getElementById("loading");
+
+const predictButton = document.getElementById("predictButton");
+
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    // Hide previous results
+    resultDiv.classList.add("hidden");
+    errorDiv.classList.add("hidden");
+
+    loadingDiv.classList.remove("hidden");
+
+    predictButton.disabled = true;
+
+
+    // Create request payload
+    const data = {
+
+        sepal_length:
+            parseFloat(document.getElementById("sepal_length").value),
+
+        sepal_width:
+            parseFloat(document.getElementById("sepal_width").value),
+
+        petal_length:
+            parseFloat(document.getElementById("petal_length").value),
+
+        petal_width:
+            parseFloat(document.getElementById("petal_width").value)
+    };
+
+
+    try {
+
+        const response = await fetch("/predict", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(data)
+
+        });
+
+
+        const result = await response.json();
+
+
+        if (result.success) {
+
+            speciesElement.textContent = result.species;
+
+            resultDiv.classList.remove("hidden");
+
+        } else {
+
+            errorDiv.textContent = result.error;
+
+            errorDiv.classList.remove("hidden");
+
+        }
+
+    } catch (error) {
+
+        errorDiv.textContent =
+            "Unable to connect to the prediction server.";
+
+        errorDiv.classList.remove("hidden");
+
+    } finally {
+
+        loadingDiv.classList.add("hidden");
+
+        predictButton.disabled = false;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+
+.card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+
+h1 {
+    text-align: center;
+
+    color: #333;
+
+    margin-bottom: 10px;
+}
+
+
+.subtitle {
+    text-align: center;
+
+    color: #777;
+
+    margin-bottom: 30px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #444;
+}
+
+
+input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: border-color 0.2s;
+}
+
+
+input:focus {
+    border-color: #667eea;
+}
+
+
+button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #667eea;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+
+button:hover {
+    background: #5568d9;
+}
+
+
+button:disabled {
+    background: #aaa;
+
+    cursor: not-allowed;
+}
+
+
+.result {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    background: #e8f8ee;
+
+    text-align: center;
+}
+
+
+.result p {
+    color: #555;
+
+    margin-bottom: 8px;
+}
+
+
+.result h2 {
+    color: #219653;
+
+    font-size: 26px;
+}
+
+
+.error {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    background: #ffe8e8;
+
+    color: #d63031;
+
+    text-align: center;
+}
+
+
+.loading {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #667eea;
+
+    font-weight: bold;
+}
+
+
+.hidden {
+    display: none;
+}
