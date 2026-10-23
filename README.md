@@ -6,7 +6,7 @@ A Flask web application that predicts a species from user-supplied measurements 
 
 ## Live Demo
 
-http://107.22.132.11:5000
+http://18.215.147.238:5000
 
 > This runs on an AWS EC2 instance that is stopped when not in use, and its public IP changes on every restart. If the link does not load, the instance is likely stopped. Run the project locally using the steps below.
 
